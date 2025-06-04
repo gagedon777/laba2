@@ -6,4 +6,8 @@ COPY main.cpp .
 
 RUN g++ -o main main.cpp
 
-CMD ["./main"]
+RUN mkdir -p /app/bin && cp main /app/bin/
+
+VOLUME /app/bin
+
+
