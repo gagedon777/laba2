@@ -1,14 +1,11 @@
-# Базовый образ с компилятором g++ (C++)
 FROM gcc:latest
 
-# Создаем папку /app внутри контейнера и делаем её рабочей
 WORKDIR /app
 
-# Копируем файл main.cpp из текущей папки (на хосте) в /app (в контейнере)
 COPY main.cpp .
 
-# Компилируем программу (g++ -o main main.cpp)
 RUN g++ -o main main.cpp
 
-# Указываем, как запускать контейнер (выполнить ./main)
-CMD ["./main"]
+RUN mkdir -p /app/bin && cp main /app/bin/
+
+VOLUME /app/bin
